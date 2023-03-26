@@ -3,11 +3,11 @@
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 
-export const usePagination = (perPage = 20) => {
+export const useRelayPagination = (perPage = 20) => {
   const searchParams = useSearchParams();
 
   const getQueryParam = (key: string) =>
-    useMemo(() => searchParams.get(key) || null, [searchParams.get(key)]);
+    useMemo(() => (searchParams.get(key) as string) || null, [searchParams.get(key)]);
 
   const after = getQueryParam('after');
   const before = getQueryParam('before');

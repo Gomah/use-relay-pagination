@@ -1,17 +1,20 @@
-import { useRouter } from 'next/router';
-import { useMemo } from 'react';
+'use client';
 
-export const useRelayPagination = (perPage = 20) => {
-  const router = useRouter();
+import { useSearchParams } from 'next/navigation';
+import type { RelayPagination } from './types';
 
-  const getQueryParam = (key: string) =>
-    useMemo(() => (router.query[key] as string) || null, [router.query[key]]);
+/**
+ * Hook for handling Relay-style cursor-based pagination
+ * @param perPage Number of items per page (default: 20)
+ * @returns Relay pagination parameters
+ */
+export const useRelayPagination = (perPage = 20): RelayPagination => {
+  const searchParams = useSearchParams();
 
-  const after = getQueryParam('after');
-  const before = getQueryParam('before');
-
-  const first = useMemo(() => (!!after || !before ? perPage : undefined), [after, before, perPage]);
-  const last = useMemo(() => (!!before ? perPage : undefined), [before, perPage]);
+  const after = searchParams.get('after');
+  const before = searchParams.get('before');
+  const first = !!after || !before ? perPage : undefined;
+  const last = before ? perPage : undefined;
 
   return {
     first,

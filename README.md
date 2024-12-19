@@ -15,7 +15,7 @@ This library is designed to be used in a **Next.js** application. To install the
 
 
 ```sh
-yarn add use-relay-pagination
+bun add use-relay-pagination
 ```
 
 ## Usage
@@ -100,9 +100,9 @@ The `isLoading` and `isError` properties of the `useQuery` hook can be used to d
 ## Development
 
 1. Clone this repository
-2. Install dependencies using `yarn install`
-3. Build the module using `yarn build`
-4. Start development server using `yarn dev`
+2. Install dependencies using `bun install`
+3. Build the module using `bun run build`
+4. Start development server using `bun run dev`
 
 ## 📑 License
 
